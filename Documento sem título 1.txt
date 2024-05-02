@@ -42,5 +42,11 @@ Nos definimos Jclust = (||X1 - Zc1||² + ... + ||XN - ZcN||²)/N,
 o que significa a distancia quadrada dos vetores ao seu representativo associado.
 Note que Jclust depende das atribuições do cluster (ou seja, c), assim como a escolha de representantes de grupo Z1, ...., Zk. Quanto menor Jclust for, melhor o clustering. Um caso extremo seria Jclust = 0, o que significa que a distancia entre cada vetor original e seu representante associado é 0. Isso acontece somente quando a coleção original de vetores aceita apenas k diferentes valores, e cada vetor é associado ao representante que ele é igual. (Esse caso extremo provavelmente nao ocorreria na pratica)
 
-Nossa 
+Nossa escolha de objetivo de clustering Jclust faz sentido, desde que encorage todos os pontos a estarem proximos de seus representativos associados, mas há outras escolhas razoaveis. Por exemplo, é possível usar um objetivo que encorage agrupamentos mais balanceados. Mas nós vamos ficar com essa escolha de objetivo mais basica (e muito comum).
+
+____________________________
+Clustering ótimo e subótimo|
+----------------------------
+
+Nós buscamos um clustering, ou seja, um grupo de atribuiçoes C1, ..., CN e um grupo de Representantes Z1, ..., Zk, que minimizam o objetivo Jclust. Nós chamamos esse agrupamento de *Ótimo*. Infelizmente, para todos menos para os menores problemas, é praticamente impossível achar um clustering ótimo (A principio, pode ser feito mas a quantidade de computação necessária cresce extremamente rápido com o tamanho de N). A boa notícia é que o algoritmo k-means descrito na proxima sessão requer muito menos computação (e de fato, pode ser executado para problemas com N mensurado em bilhões), e frequentemente encontra um agrupamento, se não o absoluto melhor, muito bom.
 
