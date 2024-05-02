@@ -32,40 +32,40 @@ def cluster(titulo, dados,eixo_x, eixo_y, eixo_z = False):
         # 2 - Pontos permanecem no mesmo cluster
         # 3 - Um número maximo arbitrário de iterações foi alcançado
 
-diff = 1 # Acho que é a variável que vai ficar de olho se o nossos centroides recem formados alteram ou não
-j=0
+    diff = 1 # Acho que é a variável que vai ficar de olho se o nossos centroides recem formados alteram ou não
+    j=0
 
-while(diff!=0):
-    XD=dados
-    i=1
-    for index1,row_c in Centroids.iterrows():
-        ED=[]
-        for index2,row_d in XD.iterrows():
-            d1=(row_c[eixo_x]-row_d[eixo_x])**2
-            d2=(row_c[eixo_y]-row_d[eixo_y])**2
-            d=np.sqrt(d1+d2)
-            ED.append(d)
-        dados[i]=ED
-        i=i+1
+    while(diff!=0):
+        XD=dados
+        i=1
+        for index1,row_c in Centroids.iterrows():
+            ED=[]
+            for index2,row_d in XD.iterrows():
+                d1=(row_c[eixo_x]-row_d[eixo_x])**2
+                d2=(row_c[eixo_y]-row_d[eixo_y])**2
+                d=np.sqrt(d1+d2)
+                ED.append(d)
+            dados[i]=ED
+            i=i+1
 
-    C=[]
-    for index,row in dados.iterrows():
-        min_dist=row[1]
-        pos=1
-        for i in range(K):
-            if row[i+1] < min_dist:
-                min_dist = row[i+1]
-                pos=i+1
-        C.append(pos)
-    dados["Cluster"]=C
-    Centroids_new = dados.groupby(["Cluster"]).mean()[[eixo_y,eixo_x]]
-    if j == 0:
-        diff=1
-        j=j+1
-    else:
-        diff = (Centroids_new['LoanAmount'] - Centroids['LoanAmount']).sum() + (Centroids_new['ApplicantIncome'] - Centroids['ApplicantIncome']).sum()
-        print(diff.sum())
-    Centroids = dados.groupby(["Cluster"]).mean()[[eixo_y,eixo_x]]
+        C=[]
+        for index,row in dados.iterrows():
+            min_dist=row[1]
+            pos=1
+            for i in range(K):
+                if row[i+1] < min_dist:
+                    min_dist = row[i+1]
+                    pos=i+1
+            C.append(pos)
+        dados["Cluster"]=C
+        Centroids_new = dados.groupby(["Cluster"]).mean()[[eixo_y,eixo_x]]
+        if j == 0:
+            diff=1
+            j=j+1
+        else:
+            diff = (Centroids_new['LoanAmount'] - Centroids['LoanAmount']).sum() + (Centroids_new['ApplicantIncome'] - Centroids['ApplicantIncome']).sum()
+            print(diff.sum())
+        Centroids = dados.groupby(["Cluster"]).mean()[[eixo_y,eixo_x]]
 
     return
 
