@@ -1,0 +1,46 @@
+K-Means - A teoria
+____________________
+O que é o clustering|
+--------------------
+[Tradução de cluster: Conjunto, agrupamento, aglomerado]
+
+Supondo que nós temos N vetores x1, ..., xN. O objetivo do clustering é agrupar ou particionar os vetores (se possivel) em k grupos de clusters, com vetores em cada grupo proximos um ao outro.
+
+[Acredito que os nossos vetores sejam de 2 dimensoes, ja que iremos plotar eles em um gráfico, entao sao todos x, y]
+
+Normalmente temos muitos mais vetores do que grupos. Parte do trabalho da tarefa de fazer o cluster de uma coleção de vetores, é determinar se os vetores podem ou não ser divididos em k grupos, com vetores em cada grupo proximos uns aos outros. É claro que isso depende do k(numero de clusters) e os dados em questão.
+
+Em quase todas as aplicações, os vetores possuem muito mais que 2 dimensões.
+______________________
+Objetivo do clustering|
+----------------------
+
+Specificando as atribuições do cluster.
+
+Nos especificamos um clustering de vetores dizendo qual cluster ou grupo que cada vetor pertence.
+Nos rotulamos os grupos 1, ..., k e especificamos um cluster ou atribuição dos N vetores a grupos usando um "N-vetor c" [Acho que é um grupo de N vetores com c elementos], onde ci é o grupo (numero) a que o vetor xi é atribuido.
+Como um simples exemplo com N = 5 vetores e k = 3 grupos (clusters), c = (3, 1, 1, 1, 2) significa que x1 é atribuido ao grupo 3; x2, x3 e x4 sao atribuidos ao grupo 1 e x5 é atribuido ao grupo 2.
+Nós tambem vamos descrever o clustering por um conjunto de indices para cada grupo. Nos vamos tomar Gj como o conjunto de indices correspondete ao grupo j, para nosso simples exemplo acima, temos
+G1 = {2, 3, 4} G2 = {5} G3 = {1}
+
+Formalmente, podemos expressar esses conjuntos de indices em termos de atribuição de grupos do vetores c como
+
+Gj = {i| ci = j}
+
+O que significa que o Gj é o conjunto de todos os indices in onde ci = j
+
+Representantes de grupo
+
+Com cada um dos grupos nos associamos um grupo representativo n-vetor, que denotamos por z1, ... zk.
+Esses representantes podem ser qualquer n-vetores; Eles nao precisam ser um dos vetores dados. Nos queremos cada representante ser proximos ao vetores no seu grupo associado, ou seja, nos queremos quantidades ||xi - zci|| serem pequenas. (note que xi no grupo j = ci, entao zci é o vetor representativo associado ao vetor xi)
+
+
+Um objetivo de clustering.
+Nos podemos agora dar um numero que utilizamos para julgar a escolha de um clustering, junto com uma escolha de grupos representativos.
+Nos definimos Jclust = (||X1 - Zc1||² + ... + ||XN - ZcN||²)/N,
+
+o que significa a distancia quadrada dos vetores ao seu representativo associado.
+Note que Jclust depende das atribuições do cluster (ou seja, c), assim como a escolha de representantes de grupo Z1, ...., Zk. Quanto menor Jclust for, melhor o clustering. Um caso extremo seria Jclust = 0, o que significa que a distancia entre cada vetor original e seu representante associado é 0. Isso acontece somente quando a coleção original de vetores aceita apenas k diferentes valores, e cada vetor é associado ao representante que ele é igual. (Esse caso extremo provavelmente nao ocorreria na pratica)
+
+Nossa 
+
